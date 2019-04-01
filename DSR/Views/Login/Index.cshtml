@@ -1,0 +1,63 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <style>
+        .LogInBox {
+            border: 1px solid;
+            padding: 60px 10px;
+            background-color: #359ace;
+            border-radius: 10px;
+            color: #fff;
+            border-style: solid;
+            border-color: deepskyblue;
+            font-style: oblique;
+        }
+       
+
+        .LogInButton {
+            background-color:grey;
+            padding: 10px 30px;
+            font-weight: 700;
+            
+        }
+        
+
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Daily Status Report</h1>
+        <div class="row">
+            <div class="col-md-4"> </div>
+            <div class="col-md-4 LogInBox text-center">
+                <h1>Log In</h1>
+                <hr />
+                <div class="form-group">
+                    <label for="EmailId">Login Id</label>
+                    <input type="text" class="form-control" id="EmailId">
+                </div>
+                <div class="form-group">
+                    <label for="EmailId">Password</label>
+                    <input type="text" class="form-control" id="EmailId">
+                </div>
+                <div class="form-group text-center">
+                    <button type="button" id="Submit"  class="btn bg-primary LogInButton">Log In</button>
+
+                </div>
+            </div>
+            <div class="col-md-4"> </div>
+        </div>
+
+
+    </div>
+</body>
+</html>
+

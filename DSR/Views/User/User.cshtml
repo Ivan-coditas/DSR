@@ -1,0 +1,119 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>User</title>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/DSRScripts/UserScript.js"></script>
+    </head>
+<body>
+    <div class="container">
+        <h1>Daily Status Report</h1>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link " href="#">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">User</a>
+            </li>
+        </ul>
+
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+                <h2>Add New User</h2>
+
+                <div class="form-group">
+                    <label for="UserName">User Name</label>
+                    <input type="text" class="form-control" id="UserName">
+                </div>
+
+                <div class="form-group">
+                    <label for="LoginId">Login Id</label>
+                    <input type="text" class="form-control" id="LoginId">
+                </div>
+
+                <div classs="form-group">
+                    <label for="EmailId">Email-Id</label>
+                    <input type="text" class="form-control" id="EmailId">
+                </div>
+
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                    <input type="password" class="form-control" id="Password">
+                </div>
+                <div class="form-group">
+                    <label for="RoleId">Role</label>
+                    <select class="form-control" id="ddlRole">
+                        <option value="" selected>select</option>
+
+                    </select>
+                </div>
+
+                <div class="form-group" id="RID">
+                    <label for="ReportingId">Reporting Person</label>
+                    <select class="form-control" id="ddlLead">
+                        <option value="" selected>select</option>
+
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="Description">Description</label>
+                    <textarea class="form-control" id="Description"> </textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="IsActive">Is Active</label>
+                    <input type="checkbox" id="IsActive">
+                </div>
+                <div>
+                    <button type="button" id="Submit" class="btn bg-primary">Submit</button>
+
+                </div>
+
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+      <br />      
+        <div class="row ">
+            <div class="col-md-1">  </div>
+                <div class="col-md-10">
+                    <table id="UserTable"
+                           class="table table-bordered table-condensed table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Edit</th>
+                                <th style="visibility:hidden">Id</th>
+                                <th>User Name</th>
+                                <th>Login Id</th>
+                                <th>Email-Id</th>
+                                <th>Passoword</th>
+                                <th>Role</th>
+                                <th>Reporting Id</th>
+                                <th>Description</th>
+                                <th>Is Active</th>
+                                <th>Delete</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
