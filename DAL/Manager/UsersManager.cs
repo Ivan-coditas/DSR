@@ -46,13 +46,67 @@ namespace DAL.Manager
         public List<Users> GetUsers()
 
         {
-            return dSRContext.users.ToList();
+            return (from u in dSRContext.users.ToList()
+                    join
+                    r in dSRContext.userRole.ToList()
+                    on
+                    u.RoleId equals r.Id
+                    join
+                    l in dSRContext.users.ToList()
+                    on
+                    u.ReportingId equals l.Id
+                    select new Users
+                    {
+                        Id=u.Id,
+                        ReportingId=u.ReportingId,
+                        ReportingName=l.UserName,
+                        RoleId=u.RoleId,
+                        RoleName=r.Role,
+                        EmailId=u.EmailId,
+                        UserName=u.UserName,
+                        LoginId=u.LoginId,
+                        Password=u.Password,
+                        Description=u.Description,
+                        IsActive=u.IsActive,
+                        Active=u.IsActive==true?"Active":"InActive"
+                        
+                    }).ToList();
+
+
         }
         public List<Users> GetTeamLeads()
         {
-            var userDB = dSRContext.users.Where(o => o.RoleId == (int)Enumerations.UserRole.TeamLead).ToList();
+          var userDB = dSRContext.users.Where(o => o.RoleId == (int)Enumerations.UserRole.TeamLead).ToList();
                 return userDB;
 
+        }
+
+
+
+        public Users UserAuthenticate(string LoginId,string Password)
+        {
+            var Users = dSRContext.users.Where(o => o.LoginId == LoginId && o.Password == Password).FirstOrDefault();
+            if(Users != null)
+            {
+                if(Users.IsActive)
+                {
+                    Users.IsValid = true;
+                }
+                else
+                {
+                    Users.IsValid = false;
+                    Users.ErrorMessage = "The logged in User is not active";
+                }
+                
+
+            }
+            else
+            {
+                Users = new Users();
+                Users.IsValid = false;
+                Users.ErrorMessage = "Invalid LoginId or Password";
+            }
+            return Users;
         }
     }
 }

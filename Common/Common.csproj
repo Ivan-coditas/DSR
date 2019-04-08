@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Projects.cs" />
+    <Compile Include="Domain\AssignProjects.cs" />
     <Compile Include="Domain\UserRole.cs" />
     <Compile Include="Domain\Users.cs" />
     <Compile Include="Helpers\Enumerations.cs" />

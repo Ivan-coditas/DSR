@@ -16,7 +16,7 @@
     });
 
 
-    //Reporting DropDown
+    //Appending UserNames to DropDown
 
     $.ajax({
         type: "Post",
@@ -89,7 +89,7 @@
                     alert("User Saved");
                     $("#Submit").text("Submit");
 
-                    activeId = 0;
+                    reset();
                     getUsers();
                 }
                 });
@@ -114,9 +114,10 @@ function UserDisplay(ctl) {
     $("#EmailId").val($(cols[4]).text());
     $("#Password").val($(cols[5]).text());
     $("#ddlRole").val($(cols[6]).text());
-    $("#ddlLead").val($(cols[7]).text());
+    $("#ddlLead").val($(cols[8]).text());
 
-    if ($("#ddlRole").val()== '1') {
+    if ($("#ddlRole").val() == '1')
+    {
         $("#RID").hide();
 
     }
@@ -125,8 +126,8 @@ function UserDisplay(ctl) {
         $("#RID").show();
 
     }
-    $("#Description").val($(cols[8]).text());
-    $("#IsActive").prop('checked',($(cols[9]).text()=='true'));
+    $("#Description").val($(cols[10]).text());
+    $("#IsActive").prop('checked',($(cols[11]).text()=='true'));
   
 
     // Change Update Button Text
@@ -150,29 +151,43 @@ function UserDelete(ctl) {
                 alert("User Deleted");
                
 
-                activeId = 0;
+                reset();
+
                 $(ctl).parents("tr").remove();
                
             }
         });
 
       
-    }
+}
+
+function reset() {
+    activeId = 0;
+  
+    $("#UserName").val('');
+    $("#LoginId").val('');
+    $("#EmailId").val('');
+    $("#Password").val('');
+    $("#ddlRole").val('');
+    $("#ddlLead").val('');
+    $("#Description").val('');
+    $("#IsActive").prop('checked', false);
+
+
+}
 
 // Add users to <table>
+
 function getUsers() {
     $("#UserTable > tbody").html(""); 
     // First check if a <tbody> tag exists, add one if not
-    if ($("#UserTable tbody").length == 0)
+    if ($("#UserTable tbody").length == 0)  //Counts no. of rows in table(total <tr> tags)
     {
         $("#UserTable").append("<tbody></tbody>");
     }
 
- 
-
-   
-
-    $.ajax({
+    
+ $.ajax({
         type: "Post",
         url: "User/GetUsers",
         dataType: "json",
@@ -192,16 +207,21 @@ function getUsers() {
                         "</button>" +
                         "</td>" +
 
-                        "<td style=\"visibility=\"hidden\"\">" + value.Id + "</td>" +
+                        "<td style=\"display: none\">" + value.Id + "</td>" +
                         "<td>" + value.UserName + "</td>" +
                         "<td>" + value.LoginId + "</td>" +
                         "<td>" + value.EmailId + "</td>" +
                         "<td>" + value.Password + "</td>" +
-                        "<td>" + value.RoleId+"</td>" +
-                        "<td>" + value.ReportingId + "</td>" +
-                        "<td>" + value.Description + "</td>" +
-                        "<td>" + value.IsActive + "</td>" +
+                        "<td style=\"display: none\">" + value.RoleId + "</td>" +
+                        "<td>" + value.RoleName + "</td>" +
 
+                        "<td style=\"display: none\">" + value.ReportingId + "</td>" +
+                        "<td>" + value.ReportingName + "</td>" +
+
+                        "<td>" + value.Description + "</td>" +
+                        "<td style=\"display: none\">" + value.IsActive + "</td>" +
+                        "<td>" + value.Active + "</td>" +
+                       
                         "<td>" +
                         "<button type='button' " +
                         "onclick='UserDelete(this);' " +

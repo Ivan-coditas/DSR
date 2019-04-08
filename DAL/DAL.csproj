@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="DSRContext.cs" />
     <Compile Include="Manager\ProjectsManager.cs" />
+    <Compile Include="Manager\AssignProjectManager.cs" />
     <Compile Include="Manager\UserRoleManager.cs" />
     <Compile Include="Manager\UsersManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

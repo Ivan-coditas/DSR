@@ -9,6 +9,7 @@
         {
             var projects =
             {
+                Id: activeId,
                 Name: $("#Name").val(),
                 Description: $("#Description").val(),
                 IsActive: $('#IsActive').is(':checked')
@@ -28,10 +29,12 @@
                     type: "POST",
                     url: PostUrl,
                     cache: false,
-                    data:projects,
+                    data: projects,
                     success: function () {
                         alert("Project Saved");
                         $("#Submit").text("Submit");
+
+                        reset();
                         getProjects();
                     }
                 });
@@ -41,24 +44,39 @@
     });
     getProjects();
 });
+
+// To reset registration form
+
+function reset()
+{
+    activeId = 0;
+    $("#Name").val('');
+    $("#Description").val('');
+    $("#IsActive").prop('checked', false);
+}
+
     //// Add projects to <table>
 
 function getProjects()
 {
         $("#ProjectTable > tbody").html("");
-        // First check if a <tbody> tag exists, add one if not
+// First check if a <tbody> tag exists, add one if not
         if ($("#ProjectTable tbody").length == 0)
         {
             $("#ProjectTable").append("<tbody></tbody");
         }
 
-        $.ajax({
+
+  //  debugger;
+    $.ajax({
+        
             type: "Post",
             url: "/Project/GetProjects",
             dataType: "json",
             contentType: "application/json",
             success: function (res) {
                 $.each(res, function (data, value) {
+
                     //Append projects to table
                     $("#ProjectTable tbody").append(
                         "<tr>" +
@@ -78,7 +96,7 @@ function getProjects()
 
                         "<td>" +
                         "<button type='button' " +
-                        "onclick='UserDelete(this);' " +
+                        "onclick='ProjectDelete(this);' " +
                         "class='btn btn-default' " +
                         "data-id='" + value.Id + "'>" +
                         "<span class='glyphicon glyphicon-remove' />" +
@@ -93,12 +111,14 @@ function getProjects()
         })
     }
 
+
+//Display project on click event(edit button)
 var activeId = 0;
 function ProjectDisplay(ctl) {
     var row = $(ctl).parents("tr");
     var cols = row.children("td");
 
-    activeId = $($(cols[0]).children("button")[0]).data("Id");
+    activeId = $($(cols[0]).children("button")[0]).data("id");
     $("#Name").val($(cols[2]).text());
     $("#Description").val($(cols[3]).text());
     $("#IsActive").prop('checked', ($(cols[4]).text() == 'true'));
@@ -113,7 +133,8 @@ function ProjectDelete(ctl) {
     var row = $(ctl).parents("tr");
     var cols = row.children("td");
 
-    var Id = $($(cols[0].children("button")[0]).data("Id"));
+    var Id = $($(cols[0]).children("button")[0]).data("id");
+   
 
     $.ajax({
         type: "Post",
@@ -123,7 +144,8 @@ function ProjectDelete(ctl) {
         success: function () {
             alert("Project deleted");
 
-            activeId = 0;
+
+            reset();
             $(ctl).parents("tr").remove();
         }
     });

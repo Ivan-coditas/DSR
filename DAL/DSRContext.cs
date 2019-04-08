@@ -14,6 +14,7 @@ namespace DAL
         public DbSet<Users> users { get; set; }
         public DbSet<UserRole> userRole { get; set; }
         public DbSet<Projects> projects { get; set; }
+        public DbSet<AssignProjects> projectTeams { get; set; }
 
     }
 }
