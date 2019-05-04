@@ -1,0 +1,93 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
+
+
+<script src="~/Scripts/DSRScripts/TaskScript.js"></script>
+
+
+<div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-4">
+        <h2>Tasks</h2>
+
+        <div class="form-group">
+            <label for="ProjectId">Project Id</label>
+            <select class="form-control" id="ProjectId">
+                <option value="" selected>select</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="TaskName">Task Name</label>
+            <input type="text" class="form-control" id="TaskName">
+        </div>
+
+        <div class="form-group">
+            <label for="TaskDescription">Task Description</label>
+            <textarea class="form-control" id="TaskDescription"> </textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="DueDate">Due Date</label>
+            <input type="text" class="form-control" id="DueDate">
+
+        </div>
+
+        <div class="form-group">
+            <label for="TaskStatus">Task Status</label>
+            <select class="form-control" id="TaskStatus">
+                <option value="" selected>select</option>
+                <option value="0">To Do</option>
+                <option value="1">In Progress</option>
+                <option value="2">Completed</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="IsActive">Is Active</label>
+            <input type="checkbox" id="IsActive">
+        </div>
+
+        <div>
+            <button type="button" id="Submit" class="btn bg-primary">Submit</button>
+
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>
+<br />
+<div class="row ">
+    <div class="col-md-1">  </div>
+    <div class="col-md-10">
+        <table id="TaskTable"
+               class="table table-bordered table-condensed table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th>Edit</th>
+                    <th style="display:none">Id</th>
+                    <th>Project Name</th>
+                    <th>Task Name</th>
+                    <th>Task Description</th>
+                    <th>Due Date</th>
+                    <th>Task Status</th>
+                    <th>IsActive</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+

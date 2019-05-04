@@ -1,40 +1,44 @@
 ﻿$(document).ready(function () {
-    //$.ajax({
-    //    type: "Post",
-    //    url: "User/GetUserRole",
-    //    dataType: "json",
-    //    contentType: "application/json",
 
-    //    success: function (res) {
-    //        $.each(res, function (data, value) {
-    //            {
-    //                $("#UserId").append($("<option></option>").val(value.Id).html(value.UserId));
+        // DropDown for Users
 
-    //            }
-    //        })
-    //    }
-    //});
+    $.ajax({
+        type: "Post",
+        url: "/User/GetUsers",
+        dataType: "json",
+        contentType: "application/json",
+
+        success: function (res) {
+            $.each(res, function (data, value) {
+                {
+                    $("#UserId").append($("<option></option>").val(value.Id).html(value.UserName));
+
+                }
+            })
+        }
+    });
 
 
-    ////Reporting DropDown
+    // DropDown for Projects
 
-    //$.ajax({
-    //    type: "Post",
-    //    url: "User/GetTeamLeads",
-    //    dataType: "json",
-    //    contentType: "application/json",
-    //    success: function (res) {
-    //        $.each(res, function (data, value) {
-    //            {
-    //                $("#ProjectId").append($("<option></option>").val(value.Id).html(value.ProjectId));
-    //            }
-    //        })
-    //    }
-    //});
+    $.ajax({
+        type: "Post",
+        url: "/Project/GetProjects",
+        dataType: "json",
+        contentType: "application/json",
+        success: function (res) {
+            $.each(res, function (data, value) {
+                {
+                    $("#ProjectId").append($("<option></option>").val(value.Id).html(value.Name));
+                }
+            })
+        }
+    });
 
 
     $("#Submit").click(function () {
-        if ($("#ProjectId").val() == '' || $("#UserId").val() == '' || $("#Description").val() == '' || $("#IsActive").val() == '') {
+        if ($("#ProjectId").val() == '' || $("#UserId").val() == '' || $("#Description").val() == '' || $("#IsActive").val() == '')
+        {
             alert("Some fields are misssing");
         }
         else {
@@ -73,7 +77,16 @@
         });
     getProjectTeam();
 
+
+
 });
+
+
+//To reset registration form on clicking Add button
+
+//$("#Add").click(function () {
+ //   reset();
+//});
 
 
 //To reset registration form
@@ -116,11 +129,17 @@ function getProjectTeam() {
 
                     "<td style=\"display:none\"\">" + value.Id + "</td>" +
 
-                    "<td>" + value.ProjectId + "</td>" +
-                    "<td>" + value.UserId + "</td>" +
+                    "<td style=\"display:none\">" + value.ProjectId + "</td>" +
+                    "<td>" + value.ProjectName + "</td>" +
+
+                    "<td style=\"display:none\">" + value.UserId + "</td>" +
+                    "<td>" + value.UserName + "</td>" +
+
 
                     "<td>" + value.Description + "</td>" +
-                    "<td>" + value.IsActive + "</td>" +
+                    "<td style=\"display:none\">" + value.IsActive + "</td>" +
+                    "<td>" + value.Active + "</td>" +
+
 
                     "<td>" +
                     "<button type='button' " +
@@ -148,10 +167,10 @@ function ProjectTeamDisplay(ctl) {
     activeId = $($(cols[0]).children("button")[0]).data("id");
 
     $("#ProjectId").val($(cols[2]).text());
-    $("#UserId").val($(cols[3]).text());
+    $("#UserId").val($(cols[4]).text());
 
-    $("#Description").val($(cols[4]).text());
-    $("#IsActive").prop('checked', ($(cols[5]).text() == 'true'));
+    $("#Description").val($(cols[6]).text());
+    $("#IsActive").prop('checked', ($(cols[7]).text() == 'true'));
 
     $("#Submit").text("Update");
 
@@ -159,7 +178,7 @@ function ProjectTeamDisplay(ctl) {
 
 //delete from table
 
-function ProjectTableDelete(ctl) {
+function ProjectTeamDelete(ctl) {
     var row = $(ctl).parents("tr");
 var cols = row.children("td");
 

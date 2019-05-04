@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace DSR.Controllers
 {
+    [SessionTimeoutAttribute]
     public class AssignProjectsController : Controller
     {
         
@@ -32,6 +33,8 @@ namespace DSR.Controllers
             var result = projectTeamManager.GetProjectTeams();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+       
 
         public JsonResult UpdateProjectTeam(AssignProjects projectTeam)
         {

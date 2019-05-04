@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace DSR.Controllers
 {
+    [SessionTimeoutAttribute]
     public class ProjectController : Controller
     {
         // GET: Project
@@ -29,6 +30,8 @@ namespace DSR.Controllers
             projectsManager.Update(projects);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
+
+       
 
         public JsonResult DeleteProject(int Id)
         {

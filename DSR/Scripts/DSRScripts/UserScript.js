@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $.ajax({
         type: "Post",
-        url: "User/GetUserRole",
+        url: "/User/GetUserRole",
         dataType: "json",
         contentType: "application/json",
         
@@ -20,7 +20,7 @@
 
     $.ajax({
         type: "Post",
-        url: "User/GetTeamLeads",
+        url: "/User/GetTeamLeads",
         dataType: "json",
         contentType: "application/json",
         success: function (res) {
@@ -70,10 +70,10 @@
 
             var PostUrl = "";
             if ($("#Submit").text() == "Update") {
-                PostUrl = "User/UpdateUser";
+                PostUrl = "/User/UpdateUser";
             }
             else {
-                PostUrl = "User/AddUser";
+                PostUrl = "/User/AddUser";
             }
 
            
@@ -81,7 +81,7 @@
             $.ajax
             ({
                 type: "POST",
-                    url: PostUrl,
+                url: PostUrl,
                 data: user,
                 cache: false,
                 success: function (result)
@@ -144,7 +144,7 @@ function UserDelete(ctl) {
     $.ajax
         ({
             type: "POST",
-            url: "User/DeleteUser",
+            url: "/User/DeleteUser",
             data: { 'Id': Id },
             cache: false,
             success: function (result) {
@@ -189,7 +189,7 @@ function getUsers() {
     
  $.ajax({
         type: "Post",
-        url: "User/GetUsers",
+        url: "/User/GetUsers",
         dataType: "json",
         contentType: "application/json",
         success: function (res) {

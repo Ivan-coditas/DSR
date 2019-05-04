@@ -86,9 +86,9 @@ namespace DAL.Manager
         public Users UserAuthenticate(string LoginId,string Password)
         {
             var Users = dSRContext.users.Where(o => o.LoginId == LoginId && o.Password == Password).FirstOrDefault();
-            if(Users != null)
+            if (Users != null)
             {
-                if(Users.IsActive)
+                if (Users.IsActive)
                 {
                     Users.IsValid = true;
                 }
@@ -97,7 +97,7 @@ namespace DAL.Manager
                     Users.IsValid = false;
                     Users.ErrorMessage = "The logged in User is not active";
                 }
-                
+
 
             }
             else

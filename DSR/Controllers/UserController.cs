@@ -1,4 +1,5 @@
 ﻿using Common.Domain;
+using Common.Helpers;
 using DAL.Manager;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace DSR.Controllers
 {
+    [SessionTimeoutAttribute]
     public class UserController : Controller
     {
       
@@ -36,11 +38,23 @@ namespace DSR.Controllers
 
         public JsonResult AddUser(Users user)
         {
+
             UsersManager usersManager = new UsersManager();
-            var result=usersManager.Add(user);
+            var result = usersManager.Add(user);
+            var fromAddress = "ivan.paul@coditas.com";
+            var toAddress = result.EmailId;
+
+            string subject = "Daily Status Report";
+            string body = "Welcome: " + result.UserName + "\n";
+            body += "LogIn Id: " + result.LoginId + "\n";
+            body += "Password: \n" + result.Password + "\n";
+
+
+            SendEmail.SendingMail(fromAddress, toAddress, subject, body);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-      
+
+
         public JsonResult GetUsers()
         {
             UsersManager usersManager = new UsersManager();
@@ -53,6 +67,7 @@ namespace DSR.Controllers
             UsersManager usersManager = new UsersManager();
             var result = usersManager.Update(user);
             return Json(result, JsonRequestBehavior.AllowGet);
+            
         }
 
         public JsonResult DeleteUser(int Id)

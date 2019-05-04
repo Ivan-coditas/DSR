@@ -1,24 +1,13 @@
 ﻿
-@{
-    Layout = null;
-}
+@*@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
 
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/DSRScripts/AssignProjectsScript.js"></script>
 
-</head>
-<body>
     <div class="container">
-        <h1>Daily Status Report</h1>
         <div class="row">
             <div class="col-md-4">
 
@@ -27,16 +16,15 @@
                 <h2>Project Team</h2>
 
                 <div class="form-group">
-                    <label for="ProjectId">Project Id</label>
+                    <label for="ProjectId">Project Name</label>
 
                     <select class="form-control" id="ProjectId">
                         <option value="" selected>select</option>
-
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="UserId">User Id</label>
+                    <label for="UserId">User Name</label>
                     <select class="form-control" id="UserId">
                         <option value="" selected>select</option>
                     </select>
@@ -51,11 +39,14 @@
                     <label for="IsActive">Is Active</label>
                     <input type="checkbox" id="IsActive" />
                 </div>
-                
+
                 <div>
                     <button type="button" class="btn bg-primary" id="Submit">Submit</button>
+                   @* <button type="button" class="btn bg-primary" id="Add">Add</button>*@
                 </div>
-                
+
+               
+
 
             </div>
             <div class="col-md-4">
@@ -77,8 +68,8 @@
                         <th>Edit</th>
                         <th style="display:none">Id</th>
 
-                        <th>Project Id</th>
-                        <th>User Id</th>
+                        <th>Project Name</th>
+                        <th>User Name</th>
                         <th>Description</th>
                         <th>IsActive</th>
                         <th>Delete</th>
@@ -89,5 +80,4 @@
     </div>
 
     </div>
-</body>
-</html>
+

@@ -42,6 +42,5 @@ namespace DAL.Manager
         }
 
 
-
     }
 }

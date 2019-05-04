@@ -50,9 +50,12 @@
   <ItemGroup>
     <Compile Include="Domain\Projects.cs" />
     <Compile Include="Domain\AssignProjects.cs" />
+    <Compile Include="Domain\Task.cs" />
+    <Compile Include="Domain\TimeSheet.cs" />
     <Compile Include="Domain\UserRole.cs" />
     <Compile Include="Domain\Users.cs" />
     <Compile Include="Helpers\Enumerations.cs" />
+    <Compile Include="Helpers\SendEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
